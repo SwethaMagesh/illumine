@@ -5,6 +5,7 @@
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Thank you! - Illumine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,4 +41,5 @@
         </a>
     </div>
 </body>
+
 </html>

@@ -5,7 +5,6 @@
     <title>Register - Illumine</title>
     <!-- <link rel="stylesheet" href="home.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -39,9 +38,9 @@ if(isset($_POST['Submit']))
 <script>
 console.log('<?php echo "DONE!!"; ?>')
 </script>
-
 <div class="alert alert-warning alert-dismissible fade show" role="alert"> Thank you for registering!! Login
-     <a href="login.php">HERE</a> </div>
+    <a href="login.php">HERE</a>
+</div>
 <?php
          }
          else{
@@ -52,13 +51,10 @@ console.log('<?php echo "FAILED update";?>')
 <div class="alert alert-warning alert-dismissible fade show" role="alert"> Email has already been taken! Please check
     again!!! </div>
 <?php
-         }       
-         
+         }         
          $conn->close();
      }
-
 ?>
-
 <body>
     <div class="main-container">
         <div class="text">

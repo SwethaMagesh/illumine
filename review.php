@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-   
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -28,8 +28,9 @@
     .fw-bold {
         font-weight: 500 !important;
     }
+
     .nav-item {
-        font-size: 1.5rem ;
+        font-size: 1.5rem;
         font-weight: 300;
     }
     </style>
@@ -54,7 +55,6 @@
                     <li class="nav-item px-4">
                         <a class="nav-link" href="home.php">My bookshelf</a>
                     </li>
-
                     <li class="nav-item px-4">
                         <a class="nav-link" href="book.php">Explore Books </a>
                     </li>
@@ -71,7 +71,6 @@
             </div>
         </div>
     </nav>
-
     <section id="Reviews">
         <br />
         <br />
@@ -84,7 +83,6 @@ $result = $conn->query($sql);
                 Reviews
             </div>
             <hr style="width:90%" class="mx-auto">
-
             <?php
 if ($result->num_rows > 0)
 {
@@ -122,13 +120,8 @@ if ($result->num_rows > 0)
                                 }
                                 
                                 ?>
-
-
-
                         </div>
-
                     </footer>
-
                 </blockquote>
             </div>
             <?php
@@ -142,15 +135,11 @@ else
             </div>
             <?php
 }
-
-
 ?>
-
         </div>
     </section>
     <br />
     <br />
-
 </body>
 
 </html>
