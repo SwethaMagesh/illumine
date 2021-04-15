@@ -120,7 +120,6 @@
                     <li class="nav-item px-4">
                         <a class="nav-link" href="home.php">My bookshelf</a>
                     </li>
-
                     <li class="nav-item px-4">
                         <a class="nav-link" href="book.php">Explore Books </a>
                     </li>
@@ -139,7 +138,6 @@
     </nav>
 
     <div class="alert alert-primary alert-dismissible " role="alert">
-
         Dear bookworm, welcome back!!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -155,8 +153,6 @@ $result = $conn->query($sql);
             </span>
         </div>
         <hr style="width:90%" class="mx-auto">
-
-
         <?php
 if ($result->num_rows > 0)
 {
@@ -202,13 +198,9 @@ if ($result->num_rows > 0)
                                 WishList</button>
                         </div>
                     </form>
-
-
                 </div>
-
                 <?php
     }?>
-
             </div>
         </div>
         <?php
@@ -223,23 +215,15 @@ else
         </div>
         <?php
 }
-
-
 ?>
-
-
     </section>
-
     <br />
     <section id="WishlistSection">
-
         <br />
-
         <?php
 include ('dbconnect.php');
 $sql = "select bid,title from wishlist where uid=$userid;";
 $result = $conn->query($sql);
-
 ?>
         <div class="display-6 fw-narrow text-primary text-center mx-auto" style="width:90%">
             Wishlist <span class="badge bg-primary rounded-pill fs-5"> <?php echo $result->num_rows ;?> </span>
@@ -308,26 +292,19 @@ else
         </div>
         <?php
 }
-
-
 ?>
-
-
     </section>
     <?php
 $sql = "select bid,title from completedlist where uid=$userid;";
 $result = $conn->query($sql);
-
 ?>
     <br />
     <section id="Finished">
-
         <br />
         <div class="display-6 fw-narrow text-primary text-center mx-auto" style="width:90%">
             Completed List <span class="badge bg-primary rounded-pill fs-5"> <?php echo $result->num_rows ;?> </span>
         </div>
         <hr style="width:90%" class="mx-auto">
-
         <?php
 if ($result->num_rows > 0)
 {
@@ -370,11 +347,9 @@ if ($result->num_rows > 0)
 
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
                             <button type="submit" name="backToReads" class="dropdown-item">Reread</button>
-
                         </div>
                     </form>
                 </div>
-
                 <?php
     }
 ?>
@@ -390,7 +365,6 @@ else
                 here!</a>
         </div>
         <?php
-
 }
 ?>
         </div>
@@ -398,10 +372,5 @@ else
     <br />
     <br />
     <br />
-
-
-
-
 </body>
-
 </html>

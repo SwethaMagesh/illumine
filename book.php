@@ -51,6 +51,9 @@ if(isset($_POST['search'])){
         font-size: 1.5rem;
         font-weight: 300;
     }
+    .modal label{
+        font-weight: 500 !important;
+    }
     </style>
 </head>
 
@@ -223,7 +226,7 @@ if (isset($_POST['add_quote']))
     // echo "Adding quotes to DB";
     include ('dbconnect.php');
     $bookid = $_POST['bookid'];
-    $quote = trim($_POST['quote']);
+    $quote = addslashes(trim($_POST['quote']));
     $sql = "call insertQuotes($userid,$bookid,'$quote');";
     if ($conn->query($sql) === true)
     {
@@ -415,8 +418,8 @@ if (isset($_POST['add_quote']))
                             </div>
                             <div class="form-group mb-3">
                                 <label for="onelinereview" class="form-label">Review</label>
-                                <input id="onelinereview" class="form-control" type="text"
-                                    placeholder="Write your review here" name="onelinereview">
+                                <textarea id="onelinereview" class="form-control" type="text"
+                                    placeholder="Write your review here" name="onelinereview"></textarea>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="suggestedBy" class="form-label">Suggested By</label>
@@ -425,8 +428,8 @@ if (isset($_POST['add_quote']))
                             </div>
                             <div class="form-group mb-3">
                                 <label for="lessonLearnt" class="form-label">Lesson Learnt</label>
-                                <input id="lessonLearnt" class="form-control" type="text" placeholder="Lessons"
-                                    name="lessonlearnt" required>
+                                <textarea id="lessonLearnt" class="form-control" type="text" placeholder="Lessons"
+                                    name="lessonlearnt" required></textarea>
                             </div>
                             <!-- have to remove book title / bid -->
                             <script>
@@ -503,12 +506,12 @@ if (isset($_POST['add_quote']))
                         <h5 class="modal-title" id="addNewQuote">Add a new quote</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form class="needs-validation" method="POST">
+                    <form class="needs-validation" id = "quoteInsert" method="POST">
                         <div class="modal-body mb-3">
                             <div class="form-group mb-3">
                                 <label for="QuoteTitle" class="form-label">Quote</label>
-                                <input id="QuoteTitle" class="form-control" type="text" placeholder="QUOTE TITLE"
-                                    name="quote" required>
+                                <textarea id="QuoteTitle" form="quoteInsert" class="form-control" placeholder="QUOTE TITLE"
+                                    name="quote" required></textarea>
                             </div>
                             <!-- have to remove book title / bid -->
                             <input type="text" value="<?php echo $specificrow['bid']; ?>" name="bookid"
