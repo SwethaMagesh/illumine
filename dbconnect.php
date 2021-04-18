@@ -2,7 +2,7 @@
 $servername="localhost";
 $database="illumine";
 $username="root";
-$password="swetha2000";
+$password="******";
 $conn=mysqli_connect($servername,$username,$password,$database);
 if(!$conn)
 {
