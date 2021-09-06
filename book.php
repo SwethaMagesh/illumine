@@ -108,8 +108,8 @@ function task($postvar, $userid)
     }
     else
     {
-        echo "<script>console.log(";
-        echo "FAILED " . $funName . ")</script>";
+        echo "<script>console.log('";
+        echo "FAILED " . $funName . "')</script>";
     }
     unset($_POST[$postvar]);
     $conn->close();
@@ -251,7 +251,7 @@ if (isset($_POST['add_quote']))
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ">
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="home.php">My bookshelf</a>
+                        <a class="nav-link" href="index.php">My bookshelf</a>
                     </li>
 
                     <li class="nav-item px-4">

@@ -38,7 +38,7 @@ if(isset($_POST['login']))
         $_SESSION['name'] = $row['name'];       
         $_SESSION['email'] = $email;  
         $_SESSION['logged_in'] = true;
-        header('location:home.php');
+        header('location:index.php');
     }
     else{
         session_abort();

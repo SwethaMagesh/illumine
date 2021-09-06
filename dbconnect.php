@@ -1,9 +1,9 @@
 <?php
 
-$servername= "illumine.mysql.database.azure.com";
+$servername= "localhost";
 $database="illumine"; 
-$username="illumine_root@illumine";
-$password= "I_swetha2000";
+$username="root";
+$password= "swetha_2000";
 
 $conn=mysqli_connect($servername,$username,$password,$database);
 if(!$conn)

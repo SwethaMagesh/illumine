@@ -147,7 +147,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ">
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="home.php">My bookshelf</a>
+                        <a class="nav-link" href="index.php">My bookshelf</a>
                     </li>
                     <li class="nav-item px-4">
                         <a class="nav-link" href="book.php">Explore Books </a>
