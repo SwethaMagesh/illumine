@@ -5,6 +5,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="illumine.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
 
@@ -174,11 +175,11 @@
 
         <?php
         include('dbconnect.php');
-        $sql = "select count(*) as Count from readdate where year(date) = year(curdate());";
+        $sql = "select count(*) as Count from readdate where year(date) = year(curdate()) and uid=$userid;";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $thisYearStat = $row['Count'];
-        $sql = "select count(*) as Count from readdate where year(date) = year(curdate())-1;";
+        $sql = "select count(*) as Count from readdate where year(date) = year(curdate())-1 and uid=$userid;";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $lastYearStat = $row['Count'];
@@ -189,12 +190,16 @@
         </div>
         <hr style="width:90%" class="mx-auto"> -->
         <div class="row">
-            <div class ="col-md-3"></div>
+            <div class="col-md-3"></div>
             <div class="col-md-3">
                 <div class="text-light card-counter bg-success">
                     <!-- <i class="fa fa-code-fork" aria-hidden="true"></i> -->
                     <div class="count-numbers d-flex align-items-end"><?php echo $thisYearStat; ?></div>
-                    <div class="count-name">Books In 2021</div>
+                    <div class="count-name">Books In
+                        <script type="text/JavaScript">
+                            document.write(new Date().getFullYear());
+                        </script>
+                    </div>
                 </div>
             </div>
 
@@ -202,13 +207,17 @@
                 <div class="text-light card-counter bg-danger">
                     <!-- <div class="box-part"> <i class="fa fa-code-fork" aria-hidden="true"></i></div> -->
                     <div class="count-numbers d-flex align-items-end"><?php echo $lastYearStat; ?></div>
-                    <div class="count-name">Books In 2020</div>
+                    <div class="count-name">Books In 
+                    <script type="text/JavaScript">
+                            document.write(new Date().getFullYear()-1);
+                        </script>
+                    </div>
                 </div>
 
             </div>
         </div>
 
-    <br/><br/>
+        <br /><br />
 
     </section>
 
@@ -347,13 +356,80 @@
         }
         ?>
     </section>
-    <?php
-    $sql = "select bid,title from completedlist where uid=$userid;";
-    $result = $conn->query($sql);
-    ?>
+
+    <br />
+    <section id="ThisYear">
+        <br />
+        <?php
+        $sql = "select bid,title from thisyearlist where uid=$userid;";
+        $result = $conn->query($sql);
+        ?>
+        <div class="display-6 fw-narrow text-primary text-center mx-auto" style="width:90%">
+            Books This Year <span class="badge bg-primary rounded-pill fs-5"> <?php echo $result->num_rows; ?> </span>
+        </div>
+        <hr style="width:90%" class="mx-auto">
+        <?php
+        if ($result->num_rows > 0) {
+        ?>
+            <div class="g-scrolling-carousel mx-auto" style="width:80%">
+                <div class="items">
+                    <?php
+                    // output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        $bid = $row['bid'];
+                        $title = $row['title'];
+                        $path = "./covers/" . $bid . ".jpg";
+                        if (!file_exists($path)) {
+                            $path = "./covers/cover.jpg";
+                        }
+                    ?>
+                        <div class="col-sm-2 mt-5 position-relative" style="display:inline-block;width:145px">
+                            <a class="w-100 h-100" style="box-shadow:none!important" href="<?php echo "./book.php?reqbid=" . $bid ?>">
+                                <figure class="figure">
+                                    <img src="<?php echo "$path" ?>" class="img-thumbnail rounded img-fluid" alt="Error">
+                                    <figcaption class="figure-caption text-truncate" style="max-width: 133px;">
+                                        <?php echo $title; ?></figcaption>
+                                </figure>
+                            </a>
+                            <form method="POST">
+                                <!-- have to remove book title / bid -->
+                                <input style="display:none" type="text" value="<?php echo "$bid"; ?>" name="bookid">
+
+                                <button id="btnGroupDrop3" type="button" class="btn position-absolute" style="top:0px;right:-17px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-three-dots-vertical" viewBox="0 0 10 16">
+                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                    </svg>
+                                </button>
+
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
+                                    <button type="submit" name="backToReads" class="dropdown-item">Reread</button>
+                                </div>
+                            </form>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        <?php
+        } else {
+        ?>
+            <div class="text-center">
+                <a class="fs-4 fw-italic text-dark" href="book.php">You haven't read any books. Explore more books
+                    here!</a>
+            </div>
+        <?php
+        }
+        ?>
+        </div>
+    </section>
     <br />
     <section id="Finished">
         <br />
+        <?php
+        $sql = "select bid,title from completedlist where uid=$userid;";
+        $result = $conn->query($sql);
+        ?>
         <div class="display-6 fw-narrow text-primary text-center mx-auto" style="width:90%">
             Completed List <span class="badge bg-primary rounded-pill fs-5"> <?php echo $result->num_rows; ?> </span>
         </div>

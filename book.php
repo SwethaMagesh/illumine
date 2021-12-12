@@ -89,6 +89,12 @@ if (isset($_POST['startReading']))
     echo "<script>console.log('StartReading')</script>";
     task('startReading', $userid);
 }
+if (isset($_POST['removeFromList'])) {
+    task('removeFromList', $userid);
+}
+if (isset($_POST['backToReads'])) {
+    task('backToReads', $userid);
+}
 
 function task($postvar, $userid)
 {
@@ -352,6 +358,12 @@ if (isset($_POST['add_quote']))
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuote">
                     Add a Quote
                 </button>
+                <br/><br/>
+                <button type="submit" name="backToReads" class="btn btn-primary">
+                   Reread
+                </button>
+                
+
                 <?php
                     
                     }
@@ -362,6 +374,9 @@ if (isset($_POST['add_quote']))
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuote">
                     Add a Quote
+                </button>
+                <button type="submit" name="backToReads" class="btn btn-primary">
+                   Reread
                 </button>
                 <?php
                    }
